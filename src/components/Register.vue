@@ -101,7 +101,7 @@
         rounded
         filled
         v-model="otp"
-        :rules="[rules.required]"
+        :rules="[rules.required, rules.code]"
       ></v-text-field>
       <v-btn rounded color="primary" dark large block @click="submitCode">
         Submit Code
@@ -134,7 +134,7 @@ export default {
         required: (value) => !!value || "Required.",
         min: (v) => v.length >= 8 || "не менее 8 символов ",
         nick: (v) => v.length >= 5 || "не менее 5 символов ",
-        emailMatch: () => `The email and password you entered don't match`,
+        code: (v) => v.length <= 6 || "6 символов ",
       },
       column: null,
       row: null,
